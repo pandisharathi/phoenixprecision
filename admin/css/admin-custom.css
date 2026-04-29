@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --sidebar-bg: #0d2137;
+    --sidebar-hover: #1a3a5a;
+    --primary: #0d6efd;
+    --bg-light: #f8f9fa;
+    --sidebar-width: 280px;
+}
+
+body {
+    background: var(--bg-light);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: var(--sidebar-bg);
+    color: #fff;
+    position: fixed;
+    top: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--sidebar-hover);
+    border-radius: 10px;
+}
+
+.sidebar .brand-header {
+    position: sticky;
+    top: 0;
+    background: var(--sidebar-bg);
+    padding: 1.5rem 1rem;
+    margin-bottom: 1rem;
+    z-index: 10;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar h4 {
+    margin: 0;
+}
+
+.sidebar .nav-link {
+    color: #cbd5e0;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+    background: var(--sidebar-hover);
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.sidebar .nav-link i {
+    font-size: 1.2rem;
+}
+
+.main-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.content-header {
+    background: #fff;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content-body {
+    padding: 2rem;
+    flex: 1;
+}
+
+.admin-footer {
+    padding: 1.5rem 2.5rem;
+    background: #fff;
+    border-top: 1px solid #eee;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+
+@media (max-width: 991.98px) {
+    .sidebar {
+        left: calc(-1 * var(--sidebar-width));
+        box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+    }
+    .main-content {
+        margin-left: 0;
+    }
+    .sidebar.active {
+        left: 0;
+    }
+    .content-header {
+        padding: 1rem;
+    }
+    .content-body {
+        padding: 1.5rem;
+    }
+}

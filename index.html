@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phoenix Precision Products | Premium Business Services</title>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Header -->
+    <header class="top-header">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="contact-info">
+                <a href="https://maps.google.com" target="_blank" class="me-3">
+                    <i class="bi bi-geo-alt-fill me-1"></i> <span>123 Business Ave, NYC</span>
+                </a>
+                <a href="tel:+1234567890" class="me-3">
+                    <i class="bi bi-telephone-fill me-1"></i> <span>+1 234 567 890</span>
+                </a>
+                <a href="mailto:info@phoenixprecision.com">
+                    <i class="bi bi-envelope-fill me-1"></i> <span>info@phoenixprecision.com</span>
+                </a>
+            </div>
+            <div class="social-icons d-none d-md-flex">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-whatsapp"></i></a>
+                <a href="#"><i class="bi bi-telegram"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="logo.png" alt="Phoenix Precision Products Logo" class="img-fluid me-2" style="max-height: 40px;">
+                <span>Phoenix Precision <span class="text-primary">Solutions</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <div class="ms-lg-4">
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#quoteModal">Get a Quote</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <section id="home" class="p-0">
+        <div id="heroCarousel" class="carousel slide hero-slider" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1350&q=80');">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content container">
+                        <div class="hero-card">
+                            <h1>Innovation for Your Business</h1>
+                            <p>We provide state-of-the-art solutions to help your business grow and thrive in the modern market.</p>
+                            <a href="#" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#quoteModal">Explore More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1350&q=80');">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content container">
+                        <div class="hero-card">
+                            <h1>Leading Industry Experts</h1>
+                            <p>Our team of professionals is dedicated to delivering excellence and high-quality results for every project.</p>
+                            <a href="#services" class="btn btn-primary btn-lg">Our Services</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1350&q=80');">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content container">
+                        <div class="hero-card">
+                            <h1>Future-Proof Solutions</h1>
+                            <p>Embrace the next generation of business technology with our comprehensive and modern services.</p>
+                            <a href="#contact" class="btn btn-primary btn-lg">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-length="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="services" class="bg-light">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <h2 class="fw-bold">Our Core Expertise</h2>
+                <div class="mx-auto bg-primary" style="width: 60px; height: 3px; border-radius: 3px;"></div>
+                <p class="text-muted mt-3">Discover why leading companies trust Phoenix Precision for their business needs.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="feature-card">
+                        <div class="feature-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80" alt="Skilled Professionals">
+                        </div>
+                        <div class="feature-body text-center">
+                            <h4>Skilled Professionals</h4>
+                            <p class="text-muted">Our team consists of industry veterans with years of experience in diverse business sectors.</p>
+                            <a href="#" class="btn btn-outline-primary rounded-pill px-4">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="feature-card">
+                        <div class="feature-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="Modern Equipment">
+                        </div>
+                        <div class="feature-body text-center">
+                            <h4>Modern Equipment</h4>
+                            <p class="text-muted">We utilize the latest tools and technologies to ensure precision, efficiency, and superior output.</p>
+                            <a href="#" class="btn btn-outline-primary rounded-pill px-4">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 reveal">
+                    <div class="feature-card">
+                        <div class="feature-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="On-Time Delivery">
+                        </div>
+                        <div class="feature-body text-center">
+                            <h4>On-Time Delivery</h4>
+                            <p class="text-muted">Punctuality is our priority. We guarantee timely execution and delivery of all our professional services.</p>
+                            <a href="#" class="btn btn-outline-primary rounded-pill px-4">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-white">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <h2 class="fw-bold">Our Latest Projects</h2>
+                <div class="mx-auto bg-primary" style="width: 60px; height: 3px; border-radius: 3px;"></div>
+                <p class="text-muted mt-3">Innovative solutions delivered with precision and modern design standards.</p>
+            </div>
+            
+            <div class="row mb-5 reveal">
+                <div class="col-12 text-center">
+                    <button class="btn btn-outline-primary filter-btn active" data-filter="all">All</button>
+                    <button class="btn btn-outline-primary filter-btn" data-filter="honing">Honing</button>
+                    <button class="btn btn-outline-primary filter-btn" data-filter="machine">Machine</button>
+                    <button class="btn btn-outline-primary filter-btn" data-filter="oils">Oil's</button>
+                    <button class="btn btn-outline-primary filter-btn" data-filter="lapping">Lapping</button>
+                    <button class="btn btn-outline-primary filter-btn" data-filter="grinding">Grinding</button>
+                </div>
+            </div>
+
+            <div class="row g-4 project-container reveal">
+                <!-- Project 1 (Honing) -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="honing">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="Honing Project">
+                        <div class="project-overlay">
+                            <span class="project-date">March 2026 | Phoenix Design</span>
+                            <h4 class="project-title">Precision Honing System</h4>
+                            <p class="small">State-of-the-art honing technology for industrial applications.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 (Machine) -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="machine">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80" alt="Machine Project">
+                        <div class="project-overlay">
+                            <span class="project-date">Feb 2026 | Phoenix Design</span>
+                            <h4 class="project-title">Automated CNC Unit</h4>
+                            <p class="small">Reducing overhead with smart machine automation.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 (Oil's) -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="oils">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" alt="Oil Project">
+                        <div class="project-overlay">
+                            <span class="project-date">Jan 2026 | Phoenix Design</span>
+                            <h4 class="project-title">Eco-Friendly Lubricants</h4>
+                            <p class="small">Sustainable oil solutions for high-performance machinery.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 4 (Lapping) -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="lapping">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1565151443333-1a4d9520b301?auto=format&fit=crop&w=600&q=80" alt="Lapping Project">
+                        <div class="project-overlay">
+                            <span class="project-date">Dec 2025 | Phoenix Design</span>
+                            <h4 class="project-title">Ultra-Fine Lapping Tool</h4>
+                            <p class="small">Perfect surfaces achieved through advanced lapping techniques.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 5 (Grinding) -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="grinding">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=600&q=80" alt="Grinding Project">
+                        <div class="project-overlay">
+                            <span class="project-date">Nov 2025 | Phoenix Design</span>
+                            <h4 class="project-title">Industrial Grinding Hub</h4>
+                            <p class="small">High-torque grinding for heavy-duty materials.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 6 (Machine) -->
+                <div class="col-lg-4 col-md-6 project-item" data-category="machine">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=600&q=80" alt="Smart Machine">
+                        <div class="project-overlay">
+                            <span class="project-date">Oct 2025 | Phoenix Design</span>
+                            <h4 class="project-title">Smart Factory Node</h4>
+                            <p class="small">IoT-enabled machines for real-time monitoring.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="bg-light overflow-hidden">
+        <div class="container text-center reveal">
+            <h2 class="fw-bold mb-5">Client Feedback</h2>
+            <div class="testimonial-slider-wrapper">
+                <div class="testimonial-slider d-flex" id="testimonialSlider">
+                    <div class="testimonial-item">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"Phoenix Precision Products transformed our production line. Their attention to detail and modern approach are second to none. The Phoenix Design integration was a game-changer."</p>
+                            <div class="testimonial-author d-flex align-items-center justify-content-center">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Client">
+                                <div class="text-start">
+                                    <h6 class="mb-0 fw-bold">Johnathan Smith</h6>
+                                    <span class="small text-muted">CEO, TechIndustries</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"Outstanding service and technical expertise. The team at Phoenix Precision delivered our CNC project ahead of schedule with perfect results. Highly recommended!"</p>
+                            <div class="testimonial-author d-flex align-items-center justify-content-center">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Client">
+                                <div class="text-start">
+                                    <h6 class="mb-0 fw-bold">Sarah Williams</h6>
+                                    <span class="small text-muted">Operations Director</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"Working with Phoenix Precision was a seamless experience. Their modern equipment and skilled professionals set them apart from the competition. Truly professional."</p>
+                            <div class="testimonial-author d-flex align-items-center justify-content-center">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Client">
+                                <div class="text-start">
+                                    <h6 class="mb-0 fw-bold">David Chen</h6>
+                                    <span class="small text-muted">Lead Engineer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blogs Section -->
+    <section id="blogs" class="bg-white">
+        <div class="container reveal">
+            <h2 class="fw-bold text-center mb-5">Latest Insights</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-card card h-100">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Blog 1">
+                        <div class="card-body">
+                            <span class="text-primary small fw-bold">Technology</span>
+                            <h5 class="card-title mt-2">The Future of AI in Manufacturing</h5>
+                            <p class="card-text text-muted small">Exploring how machine learning is optimizing production schedules...</p>
+                            <a href="#" class="btn btn-link p-0 text-decoration-none fw-bold">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-card card h-100">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Blog 2">
+                        <div class="card-body">
+                            <span class="text-primary small fw-bold">Innovation</span>
+                            <h5 class="card-title mt-2">Phoenix Design Principles</h5>
+                            <p class="card-text text-muted small">Deep dive into the modern aesthetics defining industrial beauty...</p>
+                            <a href="#" class="btn btn-link p-0 text-decoration-none fw-bold">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mx-auto">
+                    <div class="blog-card card h-100">
+                        <img src="https://images.unsplash.com/photo-1551133990-7ccc23b821d9?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Blog 3">
+                        <div class="card-body">
+                            <span class="text-primary small fw-bold">Efficiency</span>
+                            <h5 class="card-title mt-2">Sustainable Honing Techniques</h5>
+                            <p class="card-text text-muted small">Reducing environmental impact without compromising surface finish...</p>
+                            <a href="#" class="btn btn-link p-0 text-decoration-none fw-bold">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (Simple Illustration) -->
+    <section id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0 reveal">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded shadow-lg" alt="About Us">
+                </div>
+                <div class="col-lg-6 reveal">
+                    <h2 class="fw-bold mb-3">Redefining Business Excellence</h2>
+                    <p class="lead text-primary fw-medium">Helping businesses transform through innovation and strategic insight.</p>
+                    <p class="text-muted">Phoenix Precision Products has been at the forefront of business consulting and technical implementation for over a decade. We believe in creating sustainable value for our clients through a partnership built on trust and results.</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Tailored Strategic Planning</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Cutting-edge Technology Integration</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> 24/7 Dedicated Support</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Read Our Story</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row g-4 border-bottom border-secondary pb-5">
+                <div class="col-lg-4">
+                    <a class="navbar-brand d-flex align-items-center mb-3" href="#" style="color: var(--white) !important;">
+                        <img src="logo.png" alt="Phoenix Precision Products Logo" class="img-fluid me-2 rounded" style="max-height: 40px;">
+                        <span>Phoenix Precision <span class="text-primary">Solutions</span></span>
+                    </a>
+                    <p class="text-muted pe-lg-4">Leading the way in professional business services. We provide the tools and expertise to elevate your corporate presence.</p>
+                    <div class="footer-socials">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-whatsapp"></i></a>
+                        <a href="#"><i class="bi bi-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home">Home</a></li>
+                        <li class="mb-2"><a href="#about">About Us</a></li>
+                        <li class="mb-2"><a href="#services">Services</a></li>
+                        <li class="mb-2"><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5>Support</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Help Center</a></li>
+                        <li class="mb-2"><a href="#">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Contact Us</h5>
+                    <p class="text-muted mb-2"><i class="bi bi-geo-alt-fill text-primary me-2"></i> 123 Business Avenue, Suite 500, NYC</p>
+                    <p class="text-muted mb-2"><i class="bi bi-telephone-fill text-primary me-2"></i> +1 (234) 567 890</p>
+                    <p class="text-muted mb-2"><i class="bi bi-envelope-at-fill text-primary me-2"></i> contact@phoenixprecision.com</p>
+                </div>
+            </div>
+            <div class="text-center pt-4">
+                <p class="text-muted small">&copy; 2026 Phoenix Precision Products. All rights reserved. Designed for Excellence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Get a Quote Modal -->
+    <div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-primary text-white border-0">
+                    <h5 class="modal-title fw-bold" id="quoteModalLabel">Request a Free Quote</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="quoteForm" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Full Name <span class="required-star">*</span></label>
+                                <input type="text" class="form-control" id="formName" placeholder="John Doe" required>
+                                <div class="invalid-feedback">Letters and spaces only, please.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Email Address <span class="required-star">*</span></label>
+                                <input type="email" class="form-control" id="formEmail" placeholder="john@example.com" required>
+                                <div class="invalid-feedback">Invalid email address provide the test@sample.com.</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Phone Number <span class="required-star">*</span></label>
+                                <input type="tel" class="form-control" id="formPhone" placeholder="1234567890" maxlength="10" required>
+                                <div class="invalid-feedback">Enter 10 digit phone number (numbers only).</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Company Name</label>
+                                <input type="text" class="form-control" id="formCompany" placeholder="Acme Corp">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold">Address</label>
+                                <input type="text" class="form-control" id="formAddress" placeholder="123 Main St, City, Country">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold">Project Description <span class="required-star">*</span></label>
+                                <textarea class="form-control" id="formDesc" rows="4" placeholder="How can we help you?" required></textarea>
+                                <div class="invalid-feedback">Please provide a short description.</div>
+                            </div>
+                            <div class="col-12">
+                                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-end">
+                            <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary px-4">Submit Request</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Scroll Interactivity -->
+    <script>
+        // Reveal on Scroll Animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // Smooth Scroll for Nav Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar Shadow on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+                nav.style.padding = '10px 0';
+            } else {
+                nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
+                nav.style.padding = '15px 0';
+            }
+        });
+
+        // Project Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                // Filter items
+                projectItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.classList.remove('d-none');
+                        // Trigger fade in animation
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.classList.add('d-none');
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Initial style for filter items (optional, but ensures transitions work)
+        projectItems.forEach(item => {
+            item.style.transition = 'all 0.3s ease-out';
+        });
+
+        // Testimonial Scroll Logic
+        const slider = document.getElementById('testimonialSlider');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        const autoScroll = () => {
+            if (!isDown) {
+                slider.scrollLeft += 1;
+                if (slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth)) {
+                    slider.scrollLeft = 0;
+                }
+            }
+        };
+        let scrollInterval = setInterval(autoScroll, 30);
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            clearInterval(scrollInterval);
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            scrollInterval = setInterval(autoScroll, 30);
+        });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            scrollInterval = setInterval(autoScroll, 30);
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2;
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        // Quote Form Validation
+        const quoteForm = document.getElementById('quoteForm');
+        const modalElement = document.getElementById('quoteModal');
+        
+        // Reset form and clear errors when modal opens
+        modalElement.addEventListener('show.bs.modal', () => {
+            quoteForm.reset();
+            const inputs = quoteForm.querySelectorAll('.is-invalid');
+            inputs.forEach(input => input.classList.remove('is-invalid'));
+            grecaptcha.reset();
+        });
+
+        // Small helper to clear invalid state on input
+        quoteForm.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('input', () => {
+                input.classList.remove('is-invalid');
+            });
+        });
+
+        const validateEmail = (input) => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(input.value.trim()) && input.value.trim() !== '') {
+                input.classList.add('is-invalid');
+                return false;
+            }
+            input.classList.remove('is-invalid');
+            return true;
+        };
+
+        const validatePhone = (input) => {
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(input.value.trim()) && input.value.trim() !== '') {
+                input.classList.add('is-invalid');
+                return false;
+            }
+            input.classList.remove('is-invalid');
+            return true;
+        };
+
+        document.getElementById('formEmail').addEventListener('blur', function() {
+            validateEmail(this);
+        });
+
+        document.getElementById('formPhone').addEventListener('blur', function() {
+            validatePhone(this);
+        });
+
+        quoteForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('formName');
+            const email = document.getElementById('formEmail');
+            const phone = document.getElementById('formPhone');
+            const desc = document.getElementById('formDesc');
+            let isValid = true;
+
+            // Name validation (Text only)
+            const nameRegex = /^[A-Za-z\s]+$/;
+            if (!nameRegex.test(name.value.trim())) {
+                name.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                name.classList.remove('is-invalid');
+            }
+
+            // Email validation
+            if (!validateEmail(email)) {
+                isValid = false;
+            }
+
+            // Phone validation (Numbers only, 10 digits)
+            if (!validatePhone(phone)) {
+                isValid = false;
+            }
+
+            // Description validation
+            if (desc.value.trim() === '') {
+                desc.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                desc.classList.remove('is-invalid');
+            }
+
+            const response = grecaptcha.getResponse();
+            if (response.length === 0) {
+                alert('Please complete the reCAPTCHA.');
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Thank you! Your quote request has been submitted.');
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                modal.hide();
+                quoteForm.reset();
+                grecaptcha.reset();
+            }
+        });
+    </script>
+</body>
+</html>
