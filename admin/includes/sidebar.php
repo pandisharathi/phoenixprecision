@@ -42,6 +42,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <a class="nav-link <?php echo $current_page == 'edit_clients.php' ? 'active' : ''; ?>" href="edit_clients.php">
             <i class="bi bi-people me-2"></i> Clients
         </a>
+        <a class="nav-link <?php echo $current_page == 'manage_careers.php' ? 'active' : ''; ?>" href="manage_careers.php">
+            <i class="bi bi-person-badge me-2"></i> Careers
+        </a>
         <a class="nav-link <?php echo $current_page == 'manage_notifications.php' ? 'active' : ''; ?>" href="manage_notifications.php">
             <i class="bi bi-bell me-2"></i> Notifications
         </a>

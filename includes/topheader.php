@@ -8,6 +8,9 @@
         $pdo->exec("UPDATE top_header_info SET whatsapp_url = 'https://wa.me/918778859130' WHERE id = 1");
         $topInfo['whatsapp_url'] = 'https://wa.me/918778859130';
     }
+
+    // Hidden globally as requested by user
+    if (false):
     ?>
     <header class="top-header">
         <div class="container d-flex justify-content-between align-items-center">
@@ -49,3 +52,4 @@
             </div>
         </div>
     </header>
+    <?php endif; ?>
