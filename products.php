@@ -1,29 +1,28 @@
-<!-- Projects Section -->
 <?php
+require_once 'config/db.php';
+include 'includes/header_meta.php';
+include 'includes/navbar.php';
+
 // Fetch Active Categories
 $catStmt = $pdo->query("SELECT * FROM project_categories WHERE status = 'active' ORDER BY name ASC");
 $active_categories = $catStmt->fetchAll();
 
-// Fetch Projects using names of active categories and status
-$catNames = array_column($active_categories, 'name');
-if (!empty($catNames)) {
-    $placeholders = implode(',', array_fill(0, count($catNames), '?'));
-    $stmt = $pdo->prepare("SELECT * FROM projects WHERE category IN ($placeholders) AND status = 'active' ORDER BY sort_order ASC LIMIT 6");
-    $stmt->execute($catNames);
-    $projects = $stmt->fetchAll();
-} else {
-    $projects = [];
-}
+// Fetch all active products
+$stmt = $pdo->query("SELECT * FROM projects WHERE status = 'active' ORDER BY sort_order ASC");
+$projects = $stmt->fetchAll();
 ?>
-<section id="projects" class="bg-white">
-    <div class="container">
-        <div class="text-center mb-5 reveal">
-            <h2 class="fw-bold">PRODUCTS WE MANUFACTURE</h2>
-            <div class="mx-auto bg-primary" style="width: 60px; height: 3px; border-radius: 3px;"></div>
-            <p class="text-muted mt-3">Innovative solutions delivered with precision and modern design standards.
-                </p>
-        </div>
 
+<!-- Products Hero Section -->
+<section class="gallery-hero bg-primary text-white py-5 text-center" style="background: var(--primary-gradient) !important;">
+    <div class="container py-4">
+        <h1 class="fw-bold animate__animated animate__fadeInDown">Our Products</h1>
+        <p class="lead opacity-75">Explore our comprehensive range of precision manufactured products.</p>
+    </div>
+</section>
+
+<!-- Products Section -->
+<section id="projects" class="bg-light py-5">
+    <div class="container">
         <div class="row mb-5 reveal">
             <div class="col-12 text-center">
                 <div class="d-flex flex-wrap justify-content-center gap-3">
@@ -62,12 +61,19 @@ if (!empty($catNames)) {
                     </a>
                 </div>
             <?php endforeach; ?>
-        </div>
-        
-        <div class="row mt-5 reveal">
-            <div class="col-12 text-center">
-                <a href="products.php" class="btn btn-primary btn-lg rounded-pill px-5 shadow-sm">View All Products <i class="bi bi-arrow-right ms-2"></i></a>
+
+            <?php if (count($projects) == 0): ?>
+            <div class="col-12 text-center py-5">
+                <i class="bi bi-box text-muted" style="font-size: 3rem;"></i>
+                <p class="text-muted mt-3">No products found.</p>
             </div>
+            <?php endif; ?>
         </div>
     </div>
 </section>
+
+<?php 
+include 'includes/footer.php';
+include 'includes/modal.php';
+include 'includes/scripts.php';
+?>

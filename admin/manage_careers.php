@@ -337,105 +337,6 @@ $job_types = ['Full-Time','Part-Time','Contract','Internship','Remote'];
                                 </td>
                             </tr>
 
-                            <!-- ── EDIT MODAL ── -->
-                            <div class="modal fade modal-form" id="editModal<?= $v['id'] ?>" tabindex="-1">
-                                <div class="modal-dialog modal-xl modal-dialog-scrollable">
-                                    <form method="POST" enctype="multipart/form-data" class="modal-content border-0 shadow-lg" style="border-radius:18px">
-                                        <input type="hidden" name="id" value="<?= $v['id'] ?>">
-                                        <input type="hidden" name="current_image" value="<?= htmlspecialchars($v['image'] ?? '') ?>">
-                                        <div class="modal-header" style="background:linear-gradient(135deg,#0f1117,#1a1d2e)">
-                                            <h5 class="modal-title text-white fw-bold"><i class="bi bi-pencil-square me-2"></i>Edit: <?= htmlspecialchars($v['title']) ?></h5>
-                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body p-4">
-                                            <?php include '_career_form_fields.php'; // reuse: handled inline below ?>
-                                            <div class="section-head">Basic Information</div>
-                                            <div class="row g-3">
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Job Title <span class="text-danger">*</span></label>
-                                                    <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($v['title']) ?>" required>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Vacancy Image/Flyer (Optional)</label>
-                                                    <input type="file" name="image" class="form-control">
-                                                    <?php if(!empty($v['image'])): ?>
-                                                        <small class="text-success"><i class="bi bi-image"></i> Current Image Uploaded</small>
-                                                    <?php endif; ?>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label class="form-label">Sort Order</label>
-                                                    <input type="number" name="sort_order" class="form-control" value="<?= intval($v['sort_order']) ?>">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label class="form-label">Department</label>
-                                                    <input type="text" name="department" class="form-control" value="<?= htmlspecialchars($v['department'] ?? '') ?>" placeholder="e.g. Production">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label class="form-label">Location</label>
-                                                    <input type="text" name="location" class="form-control" value="<?= htmlspecialchars($v['location'] ?? '') ?>" placeholder="e.g. Chennai">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label class="form-label">Job Type</label>
-                                                    <select name="job_type" class="form-select">
-                                                        <?php foreach ($job_types as $jt): ?>
-                                                        <option value="<?= $jt ?>" <?= $v['job_type'] === $jt ? 'selected' : '' ?>><?= $jt ?></option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label class="form-label">Experience</label>
-                                                    <input type="text" name="experience" class="form-control" value="<?= htmlspecialchars($v['experience'] ?? '') ?>" placeholder="e.g. 2–4 Years">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label class="form-label">Qualification</label>
-                                                    <input type="text" name="qualification" class="form-control" value="<?= htmlspecialchars($v['qualification'] ?? '') ?>" placeholder="e.g. Diploma / B.E.">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label class="form-label">Salary Range</label>
-                                                    <input type="text" name="salary_range" class="form-control" value="<?= htmlspecialchars($v['salary_range'] ?? '') ?>" placeholder="e.g. ₹20,000–30,000">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label class="form-label">Last Application Date</label>
-                                                    <input type="date" name="last_date" class="form-control" value="<?= htmlspecialchars($v['last_date'] ?? '') ?>">
-                                                </div>
-                                                <div class="col-md-2 d-flex align-items-center gap-2 pt-3">
-                                                    <input type="checkbox" class="form-check-input featured-check" name="is_featured" id="feat_e<?= $v['id'] ?>" <?= $v['is_featured'] ? 'checked' : '' ?>>
-                                                    <label class="form-check-label fw-semibold" for="feat_e<?= $v['id'] ?>"><i class="bi bi-star-fill text-warning"></i> Featured</label>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <label class="form-label">Status</label>
-                                                    <select name="status" class="form-select">
-                                                        <option value="active" <?= $v['status'] === 'active' ? 'selected' : '' ?>>Active</option>
-                                                        <option value="inactive" <?= $v['status'] === 'inactive' ? 'selected' : '' ?>>Inactive</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="section-head mt-3">Content</div>
-                                            <div class="row g-3">
-                                                <div class="col-12">
-                                                    <label class="form-label">Job Description</label>
-                                                    <textarea name="description" class="form-control" rows="3" placeholder="Overview of the role…"><?= htmlspecialchars($v['description'] ?? '') ?></textarea>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Key Responsibilities <small class="text-muted">(one per line)</small></label>
-                                                    <textarea name="responsibilities" class="form-control" rows="5" placeholder="Operate CNC machines&#10;Read engineering drawings&#10;…"><?= htmlspecialchars($v['responsibilities'] ?? '') ?></textarea>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label">Requirements <small class="text-muted">(one per line)</small></label>
-                                                    <textarea name="requirements" class="form-control" rows="5" placeholder="ITI Mechanical&#10;CNC programming experience&#10;…"><?= htmlspecialchars($v['requirements'] ?? '') ?></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer bg-light" style="position: sticky; bottom: 0; z-index: 10;">
-                                            <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
-                                            <button type="submit" name="edit_vacancy" class="btn btn-danger rounded-pill px-4 fw-semibold" style="background:var(--brand);border-color:var(--brand)">
-                                                <i class="bi bi-check2-circle me-1"></i> Save Changes
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
                         <?php endforeach; ?>
                         </tbody>
                     </table>
@@ -531,49 +432,6 @@ $job_types = ['Full-Time','Part-Time','Contract','Internship','Remote'];
                                 </td>
                             </tr>
 
-                            <!-- Status Modal -->
-                            <div class="modal fade" id="statusModal<?= $a['id'] ?>" tabindex="-1">
-                                <div class="modal-dialog modal-dialog-centered modal-sm">
-                                    <div class="modal-content border-0 shadow rounded-4">
-                                        <form method="POST">
-                                            <input type="hidden" name="app_id" value="<?= $a['id'] ?>">
-                                            <div class="modal-header border-0 pb-0">
-                                                <h6 class="modal-title fw-bold">Update Status</h6>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                            </div>
-                                            <div class="modal-body py-3">
-                                                <p class="small text-muted mb-2"><strong><?= htmlspecialchars($a['applicant_name']) ?></strong></p>
-                                                <select name="app_status" class="form-select form-select-sm rounded-pill">
-                                                    <?php foreach (['new','shortlisted','rejected','hired'] as $s): ?>
-                                                    <option value="<?= $s ?>" <?= $a['status'] === $s ? 'selected' : '' ?>><?= ucfirst($s) ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                            <div class="modal-footer border-0 pt-0">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
-                                                <button type="submit" name="update_app_status" class="btn btn-sm btn-danger rounded-pill px-3" style="background:var(--brand);border-color:var(--brand)">Save</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Note Modal -->
-                            <?php if ($a['cover_note']): ?>
-                            <div class="modal fade" id="noteModal<?= $a['id'] ?>" tabindex="-1">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content border-0 shadow rounded-4">
-                                        <div class="modal-header border-0">
-                                            <h6 class="modal-title fw-bold">Cover Note — <?= htmlspecialchars($a['applicant_name']) ?></h6>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p class="text-muted" style="font-size:.9rem;white-space:pre-line"><?= htmlspecialchars($a['cover_note']) ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php endif; ?>
                         <?php endforeach; ?>
                         </tbody>
                     </table>
@@ -590,7 +448,7 @@ $job_types = ['Full-Time','Part-Time','Contract','Internship','Remote'];
 <!-- ════════════════ ADD VACANCY MODAL ════════════════ -->
 <div class="modal fade modal-form" id="addVacancyModal" tabindex="-1">
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
-        <form method="POST" enctype="multipart/form-data" class="modal-content border-0 shadow-lg" style="border-radius:18px">
+        <form method="POST" enctype="multipart/form-data" class="modal-content bg-white border-0 shadow-lg" style="border-radius:18px">
             <div class="modal-header" style="background:linear-gradient(135deg,var(--brand),#a01f1f)">
                 <h5 class="modal-title text-white fw-bold"><i class="bi bi-plus-circle me-2"></i>Add New Job Vacancy</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
@@ -680,6 +538,157 @@ $job_types = ['Full-Time','Part-Time','Contract','Internship','Remote'];
         </form>
     </div>
 </div>
+
+
+
+<!-- ════════════════ EDIT VACANCY MODALS ════════════════ -->
+<?php foreach ($vacancies as $v): ?>
+<!-- ── EDIT MODAL ── -->
+                            <div class="modal fade modal-form" id="editModal<?= $v['id'] ?>" tabindex="-1">
+                                <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                                    <form method="POST" enctype="multipart/form-data" class="modal-content bg-white border-0 shadow-lg" style="border-radius:18px">
+                                        <input type="hidden" name="id" value="<?= $v['id'] ?>">
+                                        <input type="hidden" name="current_image" value="<?= htmlspecialchars($v['image'] ?? '') ?>">
+                                        <div class="modal-header" style="background:linear-gradient(135deg,#0f1117,#1a1d2e)">
+                                            <h5 class="modal-title text-white fw-bold"><i class="bi bi-pencil-square me-2"></i>Edit: <?= htmlspecialchars($v['title']) ?></h5>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body p-4">
+                                            <div class="section-head">Basic Information</div>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Job Title <span class="text-danger">*</span></label>
+                                                    <input type="text" name="title" class="form-control" value="<?= htmlspecialchars($v['title']) ?>" required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Vacancy Image/Flyer (Optional)</label>
+                                                    <input type="file" name="image" class="form-control">
+                                                    <?php if(!empty($v['image'])): ?>
+                                                        <small class="text-success"><i class="bi bi-image"></i> Current Image Uploaded</small>
+                                                    <?php endif; ?>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Sort Order</label>
+                                                    <input type="number" name="sort_order" class="form-control" value="<?= intval($v['sort_order']) ?>">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Department</label>
+                                                    <input type="text" name="department" class="form-control" value="<?= htmlspecialchars($v['department'] ?? '') ?>" placeholder="e.g. Production">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Location</label>
+                                                    <input type="text" name="location" class="form-control" value="<?= htmlspecialchars($v['location'] ?? '') ?>" placeholder="e.g. Chennai">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Job Type</label>
+                                                    <select name="job_type" class="form-select">
+                                                        <?php foreach ($job_types as $jt): ?>
+                                                        <option value="<?= $jt ?>" <?= $v['job_type'] === $jt ? 'selected' : '' ?>><?= $jt ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Experience</label>
+                                                    <input type="text" name="experience" class="form-control" value="<?= htmlspecialchars($v['experience'] ?? '') ?>" placeholder="e.g. 2–4 Years">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Qualification</label>
+                                                    <input type="text" name="qualification" class="form-control" value="<?= htmlspecialchars($v['qualification'] ?? '') ?>" placeholder="e.g. Diploma / B.E.">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Salary Range</label>
+                                                    <input type="text" name="salary_range" class="form-control" value="<?= htmlspecialchars($v['salary_range'] ?? '') ?>" placeholder="e.g. ₹20,000–30,000">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Last Application Date</label>
+                                                    <input type="date" name="last_date" class="form-control" value="<?= htmlspecialchars($v['last_date'] ?? '') ?>">
+                                                </div>
+                                                <div class="col-md-2 d-flex align-items-center gap-2 pt-3">
+                                                    <input type="checkbox" class="form-check-input featured-check" name="is_featured" id="feat_e<?= $v['id'] ?>" <?= $v['is_featured'] ? 'checked' : '' ?>>
+                                                    <label class="form-check-label fw-semibold" for="feat_e<?= $v['id'] ?>"><i class="bi bi-star-fill text-warning"></i> Featured</label>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label class="form-label">Status</label>
+                                                    <select name="status" class="form-select">
+                                                        <option value="active" <?= $v['status'] === 'active' ? 'selected' : '' ?>>Active</option>
+                                                        <option value="inactive" <?= $v['status'] === 'inactive' ? 'selected' : '' ?>>Inactive</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="section-head mt-3">Content</div>
+                                            <div class="row g-3">
+                                                <div class="col-12">
+                                                    <label class="form-label">Job Description</label>
+                                                    <textarea name="description" class="form-control" rows="3" placeholder="Overview of the role…"><?= htmlspecialchars($v['description'] ?? '') ?></textarea>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Key Responsibilities <small class="text-muted">(one per line)</small></label>
+                                                    <textarea name="responsibilities" class="form-control" rows="5" placeholder="Operate CNC machines&#10;Read engineering drawings&#10;…"><?= htmlspecialchars($v['responsibilities'] ?? '') ?></textarea>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Requirements <small class="text-muted">(one per line)</small></label>
+                                                    <textarea name="requirements" class="form-control" rows="5" placeholder="ITI Mechanical&#10;CNC programming experience&#10;…"><?= htmlspecialchars($v['requirements'] ?? '') ?></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer bg-light" style="position: sticky; bottom: 0; z-index: 10;">
+                                            <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" name="edit_vacancy" class="btn btn-danger rounded-pill px-4 fw-semibold" style="background:var(--brand);border-color:var(--brand)">
+                                                <i class="bi bi-check2-circle me-1"></i> Save Changes
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+<?php endforeach; ?>
+
+<!-- ════════════════ APPLICATION MODALS ════════════════ -->
+<?php foreach ($applications as $a): ?>
+<!-- Status Modal -->
+                            <div class="modal fade" id="statusModal<?= $a['id'] ?>" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered modal-sm">
+                                    <div class="modal-content border-0 shadow rounded-4">
+                                        <form method="POST">
+                                            <input type="hidden" name="app_id" value="<?= $a['id'] ?>">
+                                            <div class="modal-header border-0 pb-0">
+                                                <h6 class="modal-title fw-bold">Update Status</h6>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body py-3">
+                                                <p class="small text-muted mb-2"><strong><?= htmlspecialchars($a['applicant_name']) ?></strong></p>
+                                                <select name="app_status" class="form-select form-select-sm rounded-pill">
+                                                    <?php foreach (['new','shortlisted','rejected','hired'] as $s): ?>
+                                                    <option value="<?= $s ?>" <?= $a['status'] === $s ? 'selected' : '' ?>><?= ucfirst($s) ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                            <div class="modal-footer border-0 pt-0">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                                                <button type="submit" name="update_app_status" class="btn btn-sm btn-danger rounded-pill px-3" style="background:var(--brand);border-color:var(--brand)">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Note Modal -->
+                            <?php if ($a['cover_note']): ?>
+                            <div class="modal fade" id="noteModal<?= $a['id'] ?>" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content border-0 shadow rounded-4">
+                                        <div class="modal-header border-0">
+                                            <h6 class="modal-title fw-bold">Cover Note — <?= htmlspecialchars($a['applicant_name']) ?></h6>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-muted" style="font-size:.9rem;white-space:pre-line"><?= htmlspecialchars($a['cover_note']) ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endif; ?>
+<?php endforeach; ?>
 
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>

@@ -88,6 +88,7 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/admin-custom.css">
     <style>
         .product-img {
@@ -147,7 +148,7 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
                                     </td>
                                     <td><span class="fw-semibold"><?php echo htmlspecialchars($prod['title']); ?></span></td>
                                     <td><span class="badge bg-info text-dark"><?php echo htmlspecialchars($prod['category']); ?></span></td>
-                                    <td><small class="text-muted"><?php echo substr(htmlspecialchars($prod['description']), 0, 50) . '...'; ?></small></td>
+                                    <td><small class="text-muted"><?php echo htmlspecialchars(substr(strip_tags($prod['description']), 0, 50)) . '...'; ?></small></td>
                                     <td>
                                         <span class="badge status-badge <?php echo $prod['status'] == 'active' ? 'bg-success' : 'bg-secondary'; ?>">
                                             <?php echo ucfirst($prod['status']); ?>
@@ -168,7 +169,20 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
                                     </td>
                                 </tr>
 
-                                <!-- Edit Modal -->
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+<!-- ════════════════ EDIT PRODUCT MODALS ════════════════ -->
+<?php foreach ($products as $prod): ?>
+<!-- Edit Modal -->
                                 <div class="modal fade" id="editModal<?php echo $prod['id']; ?>" tabindex="-1">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content border-0 shadow">
@@ -219,7 +233,7 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
                                                             </div>
                                                             <div class="mb-0">
                                                                 <label class="form-label fw-bold">Description</label>
-                                                                <textarea name="description" class="form-control" rows="3" required><?php echo htmlspecialchars($prod['description']); ?></textarea>
+                                                                <textarea name="description" class="form-control" rows="3"><?php echo htmlspecialchars($prod['description']); ?></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -232,16 +246,9 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
                                         </div>
                                     </div>
                                 </div>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<?php endforeach; ?>
 
-    <!-- Add Product Modal -->
+<!-- Add Product Modal -->
     <div class="modal fade" id="addProductModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content border-0 shadow">
@@ -292,7 +299,7 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
                             <div class="col-12">
                                 <div class="mb-0">
                                     <label class="form-label fw-bold">Description</label>
-                                    <textarea name="description" class="form-control" rows="3" placeholder="Enter product description" required></textarea>
+                                    <textarea name="description" class="form-control" rows="3" placeholder="Enter product description"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -311,6 +318,7 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#productsTable').DataTable({
@@ -320,6 +328,27 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
                     "search": "Search Products:",
                     "lengthMenu": "Show _MENU_ entries"
                 }
+            });
+
+            $('textarea[name="description"]').summernote({
+                placeholder: 'Enter product description...',
+                tabsize: 2,
+                height: 150,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+            });
+            
+            // Fix Summernote dropdowns in Bootstrap modals
+            $('.modal').on('shown.bs.modal', function() {
+                $(document).off('focusin.modal');
             });
         });
     </script>
