@@ -10,7 +10,7 @@ $footerLinks = $stmtLinks->fetchAll();
         <div class="row g-4 border-bottom border-secondary pb-5">
             <div class="col-lg-4">
                 <a class="navbar-brand d-flex align-items-center mb-3" href="#" style="color: #fff !important;">
-                    <img src="logo_11.png" alt="Phoenix Precision Logo" class="img-fluid me-2 rounded"
+                    <img src="logo_11.PNG" alt="Phoenix Precision Logo" class="img-fluid me-2 rounded"
                         style="max-height: 80px;">
                     <!-- <span>Phoenix <span class="text-primary">Precision</span></span> -->
                 </a>

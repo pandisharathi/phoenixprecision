@@ -18,10 +18,10 @@ if (!empty($catNames)) {
 <section id="projects" class="bg-white">
     <div class="container">
         <div class="text-center mb-5 reveal">
-            <h2 class="fw-bold">Our Professional Products</h2>
+            <h2 class="fw-bold">PRODUCTS WE MANUFACTURE</h2>
             <div class="mx-auto bg-primary" style="width: 60px; height: 3px; border-radius: 3px;"></div>
             <p class="text-muted mt-3">Innovative solutions delivered with precision and modern design standards.
-                PRODUCTS WE MANUFACTURE</p>
+                </p>
         </div>
 
         <div class="row mb-5 reveal">

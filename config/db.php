@@ -1,9 +1,14 @@
 <?php
 // Database Configuration
+// $host = 'localhost';
+// $user = 'jeyaadharsh_phoenixprecision';
+// $pass = '1vT7ueBT8)';
+// $db   = 'jeyaadharsh_phoenixprecision';
+
 $host = 'localhost';
 $user = 'root';
-$pass = ''; // Default XAMPP password
-$db   = 'nexgen_db';
+$pass = '';
+$db   = 'jeyaadharsh_phoenixprecision';
 
 try {
     $pdo = new PDO("mysql:host=$host;charset=utf8mb4", $user, $pass);
@@ -14,7 +19,7 @@ try {
     $pdo->exec("USE `$db`");
 
     // Check if critical tables exist, if not, attempt to run setup.sql
-    $tables = ['admin_users', 'hero_slides', 'services', 'projects', 'testimonials', 'blogs', 'about_content', 'top_header_info', 'navbar_links', 'contact_submissions', 'gallery', 'site_settings', 'clients'];
+    $tables = ['admin_users', 'hero_slides', 'services', 'projects', 'testimonials', 'blogs', 'about_content', 'top_header_info', 'navbar_links', 'contact_submissions'];
     $needsSetup = false;
     foreach ($tables as $table) {
         if ($pdo->query("SHOW TABLES LIKE '$table'")->rowCount() == 0) {
@@ -31,12 +36,7 @@ try {
             $statements = array_filter(array_map('trim', explode(';', $sql)));
             foreach ($statements as $stmt) {
                 if (!empty($stmt)) {
-                    try {
-                        $pdo->exec($stmt);
-                    } catch (PDOException $se) {
-                        // Ignore minor errors during auto-setup (e.g. duplicate seeds that escaped IGNORE)
-                        // but log if it's a real issue.
-                    }
+                    $pdo->exec($stmt);
                 }
             }
         }
