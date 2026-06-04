@@ -31,9 +31,8 @@ include 'includes/navbar.php';
         
         <div class="card border-0 shadow-lg rounded-4 overflow-hidden reveal">
             <div class="row g-0">
-                <div class="col-lg-6 position-relative overflow-hidden">
-                    <div class="h-100 w-100 product-img-bg" style="min-height: 400px; background-image: url('<?php echo htmlspecialchars($product['image']); ?>'); background-size: cover; background-position: center; transition: transform 0.5s ease;">
-                    </div>
+                <div class="col-lg-6 position-relative overflow-hidden d-flex align-items-center justify-content-center bg-light p-0">
+                    <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['title']); ?>" class="img-fluid product-img-bg w-100 h-100" style="object-fit: cover; object-position: center; min-height: 400px; transition: transform 0.5s ease;">
                 </div>
                 <div class="col-lg-6 d-flex align-items-center bg-white">
                     <div class="card-body p-5">

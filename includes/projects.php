@@ -49,7 +49,7 @@ if (!empty($catNames)) {
                     <a href="product_details.php?id=<?php echo $project['id']; ?>" class="text-decoration-none">
                         <div class="project-card">
                             <img src="<?php echo $project['image']; ?>"
-                                alt="<?php echo htmlspecialchars($project['title']); ?>">
+                                alt="<?php echo htmlspecialchars($project['title']); ?>" loading="lazy">
                             <div class="project-overlay">
                                 <span class="project-date"><?php echo htmlspecialchars($project['date_label']); ?></span>
                                 <h4 class="project-title text-white"><?php echo htmlspecialchars($project['title']); ?></h4>
