@@ -1,14 +1,9 @@
 <?php
 // Database Configuration
-// $host = 'localhost';
-// $user = 'jeyaadharsh_phoenixprecision';
-// $pass = '1vT7ueBT8)';
-// $db   = 'jeyaadharsh_phoenixprecision';
-
 $host = 'localhost';
 $user = 'root';
 $pass = '';
-$db   = 'jeyaadharsh_phoenixprecision';
+$db   = 'jeyaadharsh_phoenixprecision_july02';
 
 try {
     $pdo = new PDO("mysql:host=$host;charset=utf8mb4", $user, $pass);

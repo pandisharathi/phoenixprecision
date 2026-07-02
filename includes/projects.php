@@ -62,6 +62,16 @@ if (!empty($catNames)) {
                     </a>
                 </div>
             <?php endforeach; ?>
+            
+            <!-- Empty State Placeholder -->
+            <div class="col-12 text-center empty-state d-none py-5">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=80" 
+                     alt="Upload Soon" 
+                     class="img-fluid rounded-circle mb-4 shadow-sm" 
+                     style="max-width: 200px; height: 200px; object-fit: cover; border: 4px solid #f8f9fa;">
+                <h3 class="fw-bold text-muted mb-2">Upload soon..!</h3>
+                <p class="text-muted">We are currently preparing amazing products for this category. Stay tuned!</p>
+            </div>
         </div>
         
         <div class="row mt-5 reveal">

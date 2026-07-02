@@ -110,14 +110,19 @@ include 'includes/navbar.php';
 <main class="pt-5 mt-5 bg-light">
     <div class="container py-5">
         
-        <!-- Breadcrumb -->
-        <nav aria-label="breadcrumb" class="mb-4">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.php" class="text-decoration-none">Home</a></li>
-                <li class="breadcrumb-item"><a href="index.php#blogs" class="text-decoration-none">Blogs</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><?php echo htmlspecialchars($blog['title']); ?></li>
-            </ol>
-        </nav>
+        <!-- Back Button & Breadcrumb -->
+        <div class="d-flex flex-column flex-md-row align-items-md-center mb-4 gap-3">
+            <a href="index.php#blogs" class="btn btn-outline-primary rounded-pill px-4 py-2 shadow-sm fw-bold" style="transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px; width: fit-content;">
+                <i class="bi bi-arrow-left"></i> Back to Blogs
+            </a>
+            <nav aria-label="breadcrumb" class="m-0 ms-md-3">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="index.php" class="text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item"><a href="index.php#blogs" class="text-decoration-none">Blogs</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?php echo htmlspecialchars($blog['title']); ?></li>
+                </ol>
+            </nav>
+        </div>
 
         <div class="row g-5">
             <!-- Left Side: Main Blog Content -->

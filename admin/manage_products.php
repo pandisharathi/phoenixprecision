@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['add_product'])) {
         $title = $_POST['title'];
         $category = $_POST['category'];
+        $subcategory = $_POST['subcategory'] ?? null;
         $description = $_POST['description'];
         $date_label = $_POST['date_label'];
         $status = $_POST['status'];
@@ -35,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
         
-        $stmt = $pdo->prepare("INSERT INTO projects (title, category, description, date_label, image, status) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$title, $category, $description, $date_label, $image, $status]);
+        $stmt = $pdo->prepare("INSERT INTO projects (title, category, subcategory, description, date_label, image, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$title, $category, $subcategory, $description, $date_label, $image, $status]);
         header('Location: manage_products.php?msg=added');
         exit();
     }
@@ -45,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id = $_POST['id'];
         $title = $_POST['title'];
         $category = $_POST['category'];
+        $subcategory = $_POST['subcategory'] ?? null;
         $description = $_POST['description'];
         $date_label = $_POST['date_label'];
         $status = $_POST['status'];
@@ -61,8 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
         
-        $stmt = $pdo->prepare("UPDATE projects SET title = ?, category = ?, description = ?, date_label = ?, image = ?, status = ? WHERE id = ?");
-        $stmt->execute([$title, $category, $description, $date_label, $image, $status, $id]);
+        $stmt = $pdo->prepare("UPDATE projects SET title = ?, category = ?, subcategory = ?, description = ?, date_label = ?, image = ?, status = ? WHERE id = ?");
+        $stmt->execute([$title, $category, $subcategory, $description, $date_label, $image, $status, $id]);
         header('Location: manage_products.php?msg=updated');
         exit();
     }
@@ -78,6 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 $products = $pdo->query("SELECT * FROM projects ORDER BY id DESC")->fetchAll();
 $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'active' ORDER BY name ASC")->fetchAll();
+$subcategories_all = $pdo->query("SELECT category_name, name FROM project_subcategories WHERE status = 'active' ORDER BY name ASC")->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -135,6 +138,7 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
                                     <th>Image</th>
                                     <th>Title</th>
                                     <th>Category</th>
+                                    <th>Subcategory</th>
                                     <th>Description</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -148,6 +152,7 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
                                     </td>
                                     <td><span class="fw-semibold"><?php echo htmlspecialchars($prod['title']); ?></span></td>
                                     <td><span class="badge bg-info text-dark"><?php echo htmlspecialchars($prod['category']); ?></span></td>
+                                    <td><?php if(!empty($prod['subcategory'])) { echo '<span class="badge bg-secondary">'.htmlspecialchars($prod['subcategory']).'</span>'; } ?></td>
                                     <td><small class="text-muted"><?php echo htmlspecialchars(substr(strip_tags($prod['description']), 0, 50)) . '...'; ?></small></td>
                                     <td>
                                         <span class="badge status-badge <?php echo $prod['status'] == 'active' ? 'bg-success' : 'bg-secondary'; ?>">
@@ -202,9 +207,10 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
                                                                 <input type="text" name="title" class="form-control" value="<?php echo htmlspecialchars($prod['title']); ?>" required>
                                                             </div>
                                                             <div class="row g-3">
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
                                                                     <label class="form-label fw-bold">Category</label>
-                                                                    <select name="category" class="form-select" required>
+                                                                    <select name="category" class="form-select category-select" data-target="#subcatEdit<?php echo $prod['id']; ?>" required>
+                                                                        <option value="">Select Category</option>
                                                                         <?php foreach ($categories as $cat): ?>
                                                                         <option value="<?php echo htmlspecialchars($cat['name']); ?>" <?php echo $prod['category'] == $cat['name'] ? 'selected' : ''; ?>>
                                                                             <?php echo ucfirst($cat['name']); ?>
@@ -212,7 +218,13 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
                                                                         <?php endforeach; ?>
                                                                     </select>
                                                                 </div>
-                                                                <div class="col-md-6">
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label fw-bold">Subcategory</label>
+                                                                    <select name="subcategory" id="subcatEdit<?php echo $prod['id']; ?>" class="form-select subcategory-select" data-selected="<?php echo htmlspecialchars($prod['subcategory'] ?? ''); ?>">
+                                                                        <option value="">Select Subcategory</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-4">
                                                                     <label class="form-label fw-bold">Status</label>
                                                                     <select name="status" class="form-select">
                                                                         <option value="active" <?php echo $prod['status'] == 'active' ? 'selected' : ''; ?>>Active</option>
@@ -265,9 +277,9 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
                                     <input type="text" name="title" class="form-control" placeholder="Enter product title" required>
                                 </div>
                                 <div class="row g-3">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label class="form-label fw-bold">Category</label>
-                                        <select name="category" class="form-select" required>
+                                        <select name="category" class="form-select category-select" data-target="#subcatAdd" required>
                                             <option value="">Select Category</option>
                                             <?php foreach ($categories as $cat): ?>
                                             <option value="<?php echo htmlspecialchars($cat['name']); ?>">
@@ -276,7 +288,13 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-bold">Subcategory</label>
+                                        <select name="subcategory" id="subcatAdd" class="form-select subcategory-select">
+                                            <option value="">Select Subcategory</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
                                         <label class="form-label fw-bold">Status</label>
                                         <select name="status" class="form-select">
                                             <option value="active">Active</option>
@@ -349,6 +367,35 @@ $categories = $pdo->query("SELECT name FROM project_categories WHERE status = 'a
             // Fix Summernote dropdowns in Bootstrap modals
             $('.modal').on('shown.bs.modal', function() {
                 $(document).off('focusin.modal');
+            });
+            
+            // Subcategory Dynamic Dropdown
+            const subcategoriesData = <?php echo json_encode($subcategories_all); ?>;
+            
+            function updateSubcategories(categorySelect, targetSelectId, selectedSubcat = '') {
+                const category = $(categorySelect).val();
+                const $target = $(targetSelectId);
+                $target.empty().append('<option value="">Select Subcategory</option>');
+                
+                if (category) {
+                    const filtered = subcategoriesData.filter(s => s.category_name === category);
+                    filtered.forEach(s => {
+                        const selected = s.name === selectedSubcat ? 'selected' : '';
+                        $target.append(`<option value="${s.name}" ${selected}>${s.name}</option>`);
+                    });
+                }
+            }
+
+            $('.category-select').on('change', function() {
+                const target = $(this).data('target');
+                updateSubcategories(this, target);
+            });
+
+            // Trigger on load for edit modals
+            $('.category-select').each(function() {
+                const target = $(this).data('target');
+                const selectedSubcat = $(target).data('selected');
+                updateSubcategories(this, target, selectedSubcat);
             });
         });
     </script>

@@ -30,6 +30,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <a class="nav-link <?php echo $current_page == 'manage_categories.php' ? 'active' : ''; ?>" href="manage_categories.php">
             <i class="bi bi-tags me-2"></i> Categories
         </a>
+        <a class="nav-link <?php echo $current_page == 'manage_subcategories.php' ? 'active' : ''; ?>" href="manage_subcategories.php">
+            <i class="bi bi-bookmarks me-2"></i> Subcategories
+        </a>
         <a class="nav-link <?php echo $current_page == 'edit_testimonials.php' ? 'active' : ''; ?>" href="edit_testimonials.php">
             <i class="bi bi-chat-quote me-2"></i> Testimonials
         </a>

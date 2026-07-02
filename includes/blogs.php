@@ -20,7 +20,7 @@ $blogs = $stmt->fetchAll();
                                     class="text-primary small fw-bold"><?php echo htmlspecialchars($blog['category']); ?></span>
                                 <h5 class="card-title mt-2"><?php echo htmlspecialchars($blog['title']); ?></h5>
                                 <p class="card-text text-muted small"><?php echo htmlspecialchars($blog['summary']); ?></p>
-                                <a href="#" class="btn btn-link p-0 text-decoration-none fw-bold">Read More &rarr;</a>
+                                <a href="blog_details.php?id=<?php echo $blog['id']; ?>" class="btn btn-link p-0 text-decoration-none fw-bold">Read More &rarr;</a>
                             </div>
                         </div>
                     </div>

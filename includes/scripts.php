@@ -45,12 +45,15 @@
         // Project Filtering Logic
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projectItems = document.querySelectorAll('.project-item');
+        const emptyState = document.querySelector('.empty-state');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 const filter = btn.getAttribute('data-filter');
+                let visibleCount = 0;
+
                 projectItems.forEach(item => {
                     if (filter === 'all' || item.getAttribute('data-category') === filter) {
                         item.classList.remove('d-none');
@@ -58,6 +61,7 @@
                             item.style.opacity = '1';
                             item.style.transform = 'scale(1)';
                         }, 50);
+                        visibleCount++;
                     } else {
                         item.style.opacity = '0';
                         item.style.transform = 'scale(0.8)';
@@ -66,6 +70,16 @@
                         }, 300);
                     }
                 });
+                
+                if (emptyState) {
+                    if (visibleCount === 0) {
+                        setTimeout(() => {
+                            emptyState.classList.remove('d-none');
+                        }, 300);
+                    } else {
+                        emptyState.classList.add('d-none');
+                    }
+                }
             });
         });
 
