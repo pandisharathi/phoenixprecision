@@ -105,10 +105,19 @@ include 'includes/navbar.php';
         border-radius: 50px;
         font-weight: 500;
     }
+    
+    @media (min-width: 992px) {
+        .sticky-sidebar {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 100px;
+            z-index: 10;
+        }
+    }
 </style>
 
-<main class="pt-5 mt-5 bg-light">
-    <div class="container py-5">
+<main class="mt-5 bg-light">
+    <div class="container pt-3 pb-5">
         
         <!-- Back Button & Breadcrumb -->
         <div class="d-flex flex-column flex-md-row align-items-md-center mb-4 gap-3">
@@ -173,9 +182,9 @@ include 'includes/navbar.php';
 
             <!-- Right Side: Sidebar -->
             <div class="col-lg-4">
-                
-                <!-- About Us Widget -->
-                <div class="sidebar-widget mb-4">
+                <div class="sticky-sidebar">
+                    <!-- About Us Widget -->
+                    <div class="sidebar-widget mb-4">
                     <h5 class="fw-bold mb-3 pb-2 border-bottom">About Us</h5>
                     <p class="text-muted small mb-0">Phoenix Precision Products is a trusted leader in providing top-tier industrial solutions and products. We focus on innovation, quality, and guaranteed satisfaction.</p>
                 </div>
@@ -214,6 +223,7 @@ include 'includes/navbar.php';
                         <span class="badge bg-light text-dark border py-2 px-3 rounded-pill">Updates</span>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
         
@@ -237,7 +247,10 @@ include 'includes/navbar.php';
                                 <span class="badge bg-primary bg-opacity-10 text-primary mb-2"><?php echo htmlspecialchars($prod['category']); ?></span>
                                 <h5 class="card-title fw-bold" style="font-size: 1.1rem;"><?php echo htmlspecialchars($prod['title']); ?></h5>
                                 <p class="card-text text-muted small mb-0">
-                                    <?php echo substr(htmlspecialchars($prod['description']), 0, 70) . '...'; ?>
+                                    <?php 
+                                        $plainDesc = strip_tags($prod['description']);
+                                        echo htmlspecialchars(mb_strlen($plainDesc) > 70 ? mb_substr($plainDesc, 0, 70) . '...' : $plainDesc);
+                                    ?>
                                 </p>
                             </div>
                             <div class="card-footer bg-white border-0 pt-0 pb-3">
