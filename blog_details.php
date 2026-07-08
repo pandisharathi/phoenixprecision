@@ -95,7 +95,9 @@ include 'includes/navbar.php';
     }
     .related-product-img {
         height: 200px;
-        object-fit: cover;
+        object-fit: contain;
+        padding: 1rem;
+        background-color: #f8f9fa;
     }
     
     .badge-custom {
@@ -249,6 +251,7 @@ include 'includes/navbar.php';
                                 <p class="card-text text-muted small mb-0">
                                     <?php 
                                         $plainDesc = strip_tags($prod['description']);
+                                        $plainDesc = str_replace('&nbsp;', ' ', $plainDesc);
                                         echo htmlspecialchars(mb_strlen($plainDesc) > 70 ? mb_substr($plainDesc, 0, 70) . '...' : $plainDesc);
                                     ?>
                                 </p>

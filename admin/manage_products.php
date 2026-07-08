@@ -153,7 +153,10 @@ $subcategories_all = $pdo->query("SELECT category_name, name FROM project_subcat
                                     <td><span class="fw-semibold"><?php echo htmlspecialchars($prod['title']); ?></span></td>
                                     <td><span class="badge bg-info text-dark"><?php echo htmlspecialchars($prod['category']); ?></span></td>
                                     <td><?php if(!empty($prod['subcategory'])) { echo '<span class="badge bg-secondary">'.htmlspecialchars($prod['subcategory']).'</span>'; } ?></td>
-                                    <td><small class="text-muted"><?php echo htmlspecialchars(substr(strip_tags($prod['description']), 0, 50)) . '...'; ?></small></td>
+                                    <td><small class="text-muted"><?php 
+                                        $desc_clean = str_replace('&nbsp;', ' ', strip_tags($prod['description']));
+                                        echo htmlspecialchars(substr($desc_clean, 0, 50)) . '...'; 
+                                    ?></small></td>
                                     <td>
                                         <span class="badge status-badge <?php echo $prod['status'] == 'active' ? 'bg-success' : 'bg-secondary'; ?>">
                                             <?php echo ucfirst($prod['status']); ?>

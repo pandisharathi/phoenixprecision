@@ -64,7 +64,8 @@ $projects = $stmt->fetchAll();
                                 <h4 class="project-title text-white"><?php echo htmlspecialchars($project['title']); ?></h4>
                                 <p class="small text-light"><?php 
                                     $desc = strip_tags($project['description']);
-                                    echo htmlspecialchars(strlen($desc) > 80 ? substr($desc, 0, 80) . '...' : $desc); 
+                                    $desc = str_replace('&nbsp;', ' ', $desc);
+                                    echo htmlspecialchars(strlen($desc) > 80 ? mb_substr($desc, 0, 80) . '...' : $desc); 
                                 ?></p>
                             </div>
                         </div>
