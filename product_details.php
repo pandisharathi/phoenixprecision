@@ -32,7 +32,7 @@ include 'includes/navbar.php';
         <div class="card border-0 shadow-lg rounded-4 overflow-hidden reveal">
             <div class="row g-0">
                 <div class="col-lg-6 position-relative overflow-hidden d-flex align-items-center justify-content-center bg-light p-0">
-                    <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['title']); ?>" class="img-fluid product-img-bg w-100 h-100" style="object-fit: cover; object-position: center; min-height: 400px; transition: transform 0.5s ease;">
+                    <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['title']); ?>" class="img-fluid product-img-bg w-100 h-100" style="object-fit: contain; object-position: center; max-height: 500px; padding: 1rem; transition: transform 0.5s ease;">
                 </div>
                 <div class="col-lg-6 d-flex align-items-center bg-white">
                     <div class="card-body p-5">

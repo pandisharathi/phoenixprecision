@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$subcategories = $pdo->query("SELECT * FROM project_subcategories ORDER BY category_name ASC, name ASC")->fetchAll();
+$subcategories = $pdo->query("SELECT * FROM project_subcategories ORDER BY id DESC")->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,6 +92,8 @@ $subcategories = $pdo->query("SELECT * FROM project_subcategories ORDER BY categ
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/admin-custom.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
     <div class="admin-wrapper">
@@ -138,6 +140,7 @@ $subcategories = $pdo->query("SELECT * FROM project_subcategories ORDER BY categ
                         <table class="table table-hover align-middle">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Image</th>
                                     <th>Parent Category</th>
                                     <th>Name</th>
@@ -148,6 +151,7 @@ $subcategories = $pdo->query("SELECT * FROM project_subcategories ORDER BY categ
                             <tbody>
                                 <?php foreach ($subcategories as $subcat): ?>
                                 <tr>
+                                    <td><?php echo $subcat['id']; ?></td>
                                     <td>
                                         <div style="width: 50px; height: 50px; overflow: hidden; border-radius: 5px;">
                                             <img src="<?php echo $subcat['image'] ? '../'.$subcat['image'] : 'https://via.placeholder.com/50'; ?>" class="w-100 h-100" style="object-fit: cover;">
@@ -227,5 +231,17 @@ $subcategories = $pdo->query("SELECT * FROM project_subcategories ORDER BY categ
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable({
+                "pageLength": 10,
+                "order": [[0, "desc"]]
+            });
+        });
+    </script>
 </body>
 </html>
