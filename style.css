@@ -731,3 +731,9 @@ footer a:hover {
     font-family: 'Poppins', sans-serif;
     color: #444 !important;
 }
+
+/* Responsive images inside product/project descriptions */
+.card-text img {
+    max-width: 100% !important;
+    height: auto !important;
+}

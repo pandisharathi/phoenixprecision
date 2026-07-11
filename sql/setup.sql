@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS projects (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     category VARCHAR(50),
-    description TEXT,
+    description LONGTEXT,
     date_label VARCHAR(100),
     image VARCHAR(255),
     sort_order INT DEFAULT 0

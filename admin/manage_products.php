@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $category = $_POST['category'];
         $subcategory = $_POST['subcategory'] ?? null;
         $description = $_POST['description'];
+        $description = str_replace('../uploads/projects/', 'uploads/projects/', $description);
         $date_label = $_POST['date_label'];
         $status = $_POST['status'];
         $image = '';
@@ -48,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $category = $_POST['category'];
         $subcategory = $_POST['subcategory'] ?? null;
         $description = $_POST['description'];
+        $description = str_replace('../uploads/projects/', 'uploads/projects/', $description);
         $date_label = $_POST['date_label'];
         $status = $_POST['status'];
         $image = $_POST['current_image'];
@@ -248,7 +250,7 @@ $subcategories_all = $pdo->query("SELECT category_name, name FROM project_subcat
                                                             </div>
                                                             <div class="mb-0">
                                                                 <label class="form-label fw-bold">Description</label>
-                                                                <textarea name="description" class="form-control" rows="3"><?php echo htmlspecialchars($prod['description']); ?></textarea>
+                                                                <textarea name="description" class="form-control" rows="3"><?php echo htmlspecialchars(str_replace('uploads/projects/', '../uploads/projects/', $prod['description'])); ?></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -364,7 +366,29 @@ $subcategories_all = $pdo->query("SELECT category_name, name FROM project_subcat
                     ['table', ['table']],
                     ['insert', ['link', 'picture', 'video']],
                     ['view', ['fullscreen', 'codeview', 'help']]
-                ]
+                ],
+                callbacks: {
+                    onImageUpload: function(files) {
+                        var editor = $(this);
+                        var data = new FormData();
+                        data.append("image", files[0]);
+                        $.ajax({
+                            data: data,
+                            type: "POST",
+                            url: "upload_image.php",
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function(url) {
+                                editor.summernote('insertImage', url);
+                            },
+                            error: function(data) {
+                                alert("Image upload failed!");
+                                console.log(data);
+                            }
+                        });
+                    }
+                }
             });
             
             // Fix Summernote dropdowns in Bootstrap modals
