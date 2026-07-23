@@ -134,3 +134,46 @@
             </div>
         </div>
     </div>
+
+    <!-- Service Detail Modal -->
+    <div class="modal fade" id="serviceDetailModal" tabindex="-1" aria-labelledby="serviceDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: var(--border-radius); overflow: hidden;">
+                <div class="modal-header bg-primary text-white border-0 position-relative pb-2">
+                    <h5 class="modal-title fw-bold" id="serviceDetailModalLabel">Service Details</h5>
+                    <button type="button" class="btn-close btn-close-white position-absolute" style="top: 20px; right: 20px;" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 pt-3">
+                    <div class="text-center mb-3" id="serviceDetailImageWrapper">
+                        <img id="serviceDetailImage" src="" alt="" class="img-fluid rounded" style="max-height: 250px; object-fit: cover; width: 100%; border-radius: var(--border-radius);">
+                    </div>
+                    <p id="serviceDetailDescription" class="text-muted" style="white-space: pre-line; line-height: 1.8; font-size: 0.95rem;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonial Detail Modal -->
+    <div class="modal fade" id="testimonialDetailModal" tabindex="-1" aria-labelledby="testimonialDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: var(--border-radius); overflow: hidden;">
+                <div class="modal-header border-0 pb-0 position-relative">
+                    <h5 class="modal-title fw-bold pt-3 px-2 text-primary" id="testimonialDetailModalLabel">Client Feedback</h5>
+                    <button type="button" class="btn-close position-absolute" style="top: 20px; right: 20px;" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 pt-3">
+                    <div class="d-flex align-items-center mb-4 pb-3 border-bottom">
+                        <img id="testimonialDetailImage" src="" alt="" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover; border: 2px solid var(--primary-color);">
+                        <div>
+                            <h6 id="testimonialDetailName" class="mb-0 fw-bold text-dark">Client Name</h6>
+                            <span id="testimonialDetailPosition" class="small text-muted">Client Position</span>
+                        </div>
+                    </div>
+                    <div class="position-relative">
+                        <i class="bi bi-quote text-primary fs-1 opacity-25 position-absolute" style="top: -20px; left: -10px; z-index: 0;"></i>
+                        <p id="testimonialDetailContent" class="text-dark font-italic ps-4 position-relative" style="z-index: 1; font-style: italic; line-height: 1.8; font-size: 1.05rem;"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -201,6 +201,59 @@
             });
         }
 
+        // Service and Testimonial Detail Modals Populator
+        const serviceDetailModal = document.getElementById('serviceDetailModal');
+        if (serviceDetailModal) {
+            serviceDetailModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                const title = button.getAttribute('data-title');
+                const description = button.getAttribute('data-description');
+                const image = button.getAttribute('data-image');
+
+                const modalTitle = serviceDetailModal.querySelector('.modal-title');
+                const modalDesc = serviceDetailModal.querySelector('#serviceDetailDescription');
+                const modalImg = serviceDetailModal.querySelector('#serviceDetailImage');
+                const modalImgWrapper = serviceDetailModal.querySelector('#serviceDetailImageWrapper');
+
+                modalTitle.textContent = title;
+                modalDesc.textContent = description;
+                if (image && image.trim() !== '') {
+                    modalImg.src = image;
+                    modalImg.alt = title;
+                    modalImgWrapper.classList.remove('d-none');
+                } else {
+                    modalImgWrapper.classList.add('d-none');
+                }
+            });
+        }
+
+        const testimonialDetailModal = document.getElementById('testimonialDetailModal');
+        if (testimonialDetailModal) {
+            testimonialDetailModal.addEventListener('show.bs.modal', function (event) {
+                const card = event.relatedTarget;
+                const name = card.getAttribute('data-name');
+                const position = card.getAttribute('data-position');
+                const content = card.getAttribute('data-content');
+                const image = card.getAttribute('data-image');
+
+                const modalName = testimonialDetailModal.querySelector('#testimonialDetailName');
+                const modalPosition = testimonialDetailModal.querySelector('#testimonialDetailPosition');
+                const modalContent = testimonialDetailModal.querySelector('#testimonialDetailContent');
+                const modalImg = testimonialDetailModal.querySelector('#testimonialDetailImage');
+
+                modalName.textContent = name;
+                modalPosition.textContent = position;
+                modalContent.textContent = `"${content}"`;
+                if (image && image.trim() !== '') {
+                    modalImg.src = image;
+                    modalImg.alt = name;
+                    modalImg.style.display = 'block';
+                } else {
+                    modalImg.style.display = 'none';
+                }
+            });
+        }
+
         // Notification Popup Logic
         document.addEventListener('DOMContentLoaded', function() {
             <?php if (isset($notifImage) && !empty($notifImage)): ?>

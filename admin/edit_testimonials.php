@@ -11,7 +11,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_testimonial'])) {
     $name = $_POST['name'];
     $pos = $_POST['position'];
     $content = $_POST['content'];
-    $image = $_POST['image'];
+    
+    // Default to existing image
+    $image = $_POST['existing_image'] ?? '';
+
+    // Handle File Upload
+    if (isset($_FILES['image_file']) && $_FILES['image_file']['error'] == 0) {
+        $allowed = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+        $filename = $_FILES['image_file']['name'];
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        
+        if (in_array($ext, $allowed)) {
+            // Ensure directory exists
+            if (!is_dir('../uploads/testimonials')) {
+                mkdir('../uploads/testimonials', 0755, true);
+            }
+            
+            $new_name = 'testimonial_' . $id . '_' . time() . '.' . $ext;
+            $upload_path = '../uploads/testimonials/' . $new_name;
+            $db_path = 'uploads/testimonials/' . $new_name;
+            
+            if (move_uploaded_file($_FILES['image_file']['tmp_name'], $upload_path)) {
+                // Delete old local image if exists
+                if (!empty($image) && strpos($image, 'http') !== 0 && file_exists('../' . $image)) {
+                    @unlink('../' . $image);
+                }
+                $image = $db_path;
+            }
+        }
+    }
 
     $updateStmt = $pdo->prepare("UPDATE testimonials SET name = ?, position = ?, content = ?, image = ? WHERE id = ?");
     $updateStmt->execute([$name, $pos, $content, $image, $id]);
@@ -50,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_testimonial'])) {
                     <?php foreach ($testimonials as $testimonial): ?>
                     <div class="col-md-6">
                         <div class="card p-4 h-100">
-                            <form method="POST">
+                            <form method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="testimonial_id" value="<?php echo $testimonial['id']; ?>">
                                 <div class="mb-3">
                                     <label class="form-label small fw-bold">Client Name</label>
@@ -61,8 +89,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_testimonial'])) {
                                     <input type="text" name="position" class="form-control" value="<?php echo htmlspecialchars($testimonial['position']); ?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label small fw-bold">Image URL</label>
-                                    <input type="text" name="image" class="form-control" value="<?php echo $testimonial['image']; ?>">
+                                    <label class="form-label small fw-bold">Client Photo</label>
+                                    <?php if (!empty($testimonial['image'])): ?>
+                                        <div class="mb-2">
+                                            <?php 
+                                            $img_src = (strpos($testimonial['image'], 'http') === 0) ? $testimonial['image'] : '../' . $testimonial['image'];
+                                            ?>
+                                            <img src="<?php echo htmlspecialchars($img_src); ?>" alt="Current Photo" style="max-height: 80px; object-fit: cover;" class="img-thumbnail d-block">
+                                        </div>
+                                    <?php endif; ?>
+                                    <input type="file" name="image_file" class="form-control" accept="image/*">
+                                    <input type="hidden" name="existing_image" value="<?php echo htmlspecialchars($testimonial['image']); ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label small fw-bold">Feedback Content</label>

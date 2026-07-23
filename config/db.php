@@ -3,12 +3,12 @@
 $host = 'localhost';
 $user = 'root';
 $pass = '';
-$db   = 'jeyaadharsh_phoenixprecision_july02';
+$db = 'jeyaadharsh_phoenixprecision_july23';
 
 try {
     $pdo = new PDO("mysql:host=$host;charset=utf8mb4", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+
     // Create database if not exists
     $pdo->exec("CREATE DATABASE IF NOT EXISTS `$db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
     $pdo->exec("USE `$db`");

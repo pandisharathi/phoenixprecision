@@ -15,17 +15,30 @@ $services = $stmt->fetchAll();
                 requirements.</p>
         </div>
         <div class="row g-4">
-            <?php foreach ($services as $service): ?>
+            <?php foreach ($services as $service): 
+                $desc = $service['description'] ?? '';
+                $is_long = mb_strlen($desc, 'UTF-8') > 100;
+                $display_desc = $is_long ? (mb_substr($desc, 0, 100, 'UTF-8') . '...') : $desc;
+            ?>
                 <div class="col-lg-4 col-md-6 reveal">
                     <div class="feature-card">
                         <div class="feature-img-wrapper">
-                            <img src="<?php echo $service['image']; ?>"
+                            <img src="<?php echo htmlspecialchars($service['image']); ?>"
                                 alt="<?php echo htmlspecialchars($service['title']); ?>">
                         </div>
                         <div class="feature-body text-center">
                             <h4><?php echo htmlspecialchars($service['title']); ?></h4>
-                            <p class="text-muted"><?php echo htmlspecialchars($service['description']); ?></p>
-                            <a href="#" class="btn btn-outline-primary rounded-pill px-4">Learn More</a>
+                            <p class="text-muted"><?php echo htmlspecialchars($display_desc); ?></p>
+                            <?php if ($is_long): ?>
+                                <button type="button" class="btn btn-outline-primary rounded-pill px-4"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#serviceDetailModal"
+                                        data-title="<?php echo htmlspecialchars($service['title']); ?>"
+                                        data-description="<?php echo htmlspecialchars($service['description']); ?>"
+                                        data-image="<?php echo htmlspecialchars($service['image']); ?>">
+                                    Read More
+                                </button>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

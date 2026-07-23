@@ -36,4 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = '';
         }
     });
+
+    // Auto-scroll sidebar to active menu item
+    const activeLink = document.querySelector('.sidebar .nav-link.active');
+    if (activeLink) {
+        activeLink.scrollIntoView({ block: 'nearest' });
+    }
 });
